@@ -1,6 +1,8 @@
-# Synesthesia 2026 — The Dancing Body for Music
+# Synesthesia — The Dancing Body for Music
 
-A reimagined classic media player where the traditional equalizer visualization is replaced by a 3D character that dances in real-time to the music. Built for the [Figma Makeathon](https://contra.com/community/topic/figmamakeathon) on Contra.
+**Live:** [vahiidl.github.io/synesthesia-music-player](https://vahiidl.github.io/synesthesia-music-player/) &nbsp;|&nbsp; **Repo:** [github.com/vahiidl/synesthesia-music-player](https://github.com/vahiidl/synesthesia-music-player)
+
+A reimagined classic media player where the traditional equalizer visualization is replaced by a 3D character that dances in real-time to the music.
 
 ## What Is This?
 
@@ -49,17 +51,23 @@ A JetAudio-inspired skeuomorphic music player with a twist: inside the visualiza
 └── docs/
     ├── prd.md                  ← Full product requirements document
     ├── design-guideline.md     ← Skeuomorphic design specifications
-    ├── prompt.md               ← AI developer prompt
     ├── song.md                 ← Song lyrics for music generation
     └── sample-gui.png          ← UI reference image
 ```
 
 ## How to Run
 
+**Option A — Use hosted version (no setup):**
+Open [vahiidl.github.io/synesthesia-music-player](https://vahiidl.github.io/synesthesia-music-player/) in your browser.
+
+**Option B — Run locally:**
 1. Clone this repo
 2. Serve with any local HTTP server (e.g. `npx serve .` or VS Code Live Server)
 3. Open in browser — no build step required
 
+> **Asset base URL:** `https://vahiidl.github.io/synesthesia-music-player/`
+> All `.glb` and `.mp3` files are publicly accessible at this base via GitHub Pages.
+
 ## License
 
-This project was created for the Figma Makeathon on Contra. 3D assets are from Mixamo (free, no attribution required). Music is AI-generated. Reference image is AI-generated.
+This project Built for the [Figma Makeathon](https://contra.com/community/topic/figmamakeathon) on Contra. 3D assets are from Mixamo (free, no attribution required). Music is AI-generated using Gemini. Reference image is AI-generated using Nano Banana Pro 2.

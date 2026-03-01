@@ -434,7 +434,6 @@ project/
 ├── docs/
 │   ├── prd.md                  ← This file
 │   ├── design-guideline.md     ← Frontend design specs
-│   ├── prompt.md               ← AI developer prompt
 │   ├── song.md                 ← Song lyrics
 │   └── sample-gui.png          ← UI reference image
 └── README.md
@@ -512,23 +511,24 @@ Fine-tune per-song: choreography cue timestamps, bass thresholds, animation cut 
 
 ## Asset URLs
 
-> Assets are local files in the project directory. No CDN hosting needed — reference them with relative paths.
+> **Base URL:** `https://vahiidl.github.io/synesthesia-music-player/`
+> All assets are served via GitHub Pages. Use the full URLs below when referencing assets in code.
 
-| Asset | Relative Path |
+| Asset | Public URL |
 |---|---|
-| Character: The Boss (default) | `asssets/characters/character-the-boss.glb` |
-| Character: Kachujin | `asssets/characters/character-kachujin.glb` |
-| Character: Ch36 | `asssets/characters/character-ch36.glb` |
-| Character: Remy | `asssets/characters/character-remy.glb` |
-| Animation: Hip-Hop | `asssets/animations/animation-hiphop.glb` |
-| Animation: Arms Hip-Hop | `asssets/animations/animation-arms-hiphop.glb` |
-| Animation: Wave Hip-Hop | `asssets/animations/animation-wave-hiphop.glb` |
-| Animation: Tut Hip-Hop | `asssets/animations/animation-tut-hiphop.glb` |
-| Animation: Breakdance Uprock | `asssets/animations/animation-breakdance-uprock.glb` |
-| Animation: Samba | `asssets/animations/animation-samba.glb` |
-| Animation: Jazz | `asssets/animations/animation-jazz.glb` |
-| Animation: Silly Dancing | `asssets/animations/animation-silly-dancing.glb` |
-| Animation: Belly Dancing | `asssets/animations/animation-bellydancing.glb` |
-| Animation: Rumba | `asssets/animations/animation-rumba.glb` |
-| Audio: Song 1 (Make It Move) | `asssets/musics/make-it-move.mp3` |
-| Audio: Song 2 (Drag & Drop My Heart) | `asssets/musics/drag-and-drop-heart.mp3` |
+| Character: The Boss (default) | `https://vahiidl.github.io/synesthesia-music-player/asssets/characters/character-the-boss.glb` |
+| Character: Kachujin | `https://vahiidl.github.io/synesthesia-music-player/asssets/characters/character-kachujin.glb` |
+| Character: Ch36 | `https://vahiidl.github.io/synesthesia-music-player/asssets/characters/character-ch36.glb` |
+| Character: Remy | `https://vahiidl.github.io/synesthesia-music-player/asssets/characters/character-remy.glb` |
+| Animation: Hip-Hop | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-hiphop.glb` |
+| Animation: Arms Hip-Hop | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-arms-hiphop.glb` |
+| Animation: Wave Hip-Hop | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-wave-hiphop.glb` |
+| Animation: Tut Hip-Hop | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-tut-hiphop.glb` |
+| Animation: Breakdance Uprock | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-breakdance-uprock.glb` |
+| Animation: Samba | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-samba.glb` |
+| Animation: Jazz | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-jazz.glb` |
+| Animation: Silly Dancing | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-silly-dancing.glb` |
+| Animation: Belly Dancing | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-bellydancing.glb` |
+| Animation: Rumba | `https://vahiidl.github.io/synesthesia-music-player/asssets/animations/animation-rumba.glb` |
+| Audio: Song 1 — Make It Move | `https://vahiidl.github.io/synesthesia-music-player/asssets/musics/make-it-move.mp3` |
+| Audio: Song 2 — Drag & Drop My Heart | `https://vahiidl.github.io/synesthesia-music-player/asssets/musics/drag-and-drop-heart.mp3` |

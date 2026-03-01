@@ -6,7 +6,7 @@ A reimagined classic media player where the traditional equalizer visualization 
 
 ## Demo
 
-<video src="docs/demo.mp4" controls width="600" autoplay loop muted></video>
+https://github.com/vahiidl/synesthesia-music-player/raw/main/docs/demo.mp4
 
 ## What Is This?
 

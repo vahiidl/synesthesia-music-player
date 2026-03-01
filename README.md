@@ -1,22 +1,26 @@
 # Synesthesia — The Dancing Body for Music
 
-**Live:** [vahiidl.github.io/synesthesia-music-player](https://vahiidl.github.io/synesthesia-music-player/) &nbsp;|&nbsp; **Repo:** [github.com/vahiidl/synesthesia-music-player](https://github.com/vahiidl/synesthesia-music-player)
+**Live Demo:** [trust-adjust-40491506.figma.site](https://trust-adjust-40491506.figma.site) &nbsp;|&nbsp; **Repo:** [github.com/vahiidl/synesthesia-music-player](https://github.com/vahiidl/synesthesia-music-player)
 
 A reimagined classic media player where the traditional equalizer visualization is replaced by a 3D character that dances in real-time to the music.
 
+## Demo
+
+<video src="docs/demo.mp4" controls width="600" autoplay loop muted></video>
+
 ## What Is This?
 
-A JetAudio-inspired skeuomorphic music player with a twist: inside the visualization window, a 3D character performs genre-appropriate choreography synchronized to the song's rhythm, BPM, and frequency bands. Glowing equalizer bars animate behind the character, creating a layered stage effect.
+A JetAudio-inspired skeuomorphic music player with a twist: inside the visualization window, a 3D character dances on a concert stage with an LED dot wall and disco floor that react to the music in real-time. Switch between 4 characters, 2 songs, and watch the stage come alive.
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| 3D Engine | [Three.js](https://threejs.org/) — loaded via CDN import maps, zero build step |
-| Animation | `THREE.AnimationMixer` — crossfade base moves, blend additive body-part overlays |
-| Audio | Web Audio API — `AnalyserNode` for real-time frequency analysis and beat detection |
-| UI | Vanilla HTML + CSS — skeuomorphic brushed-metal player skin |
-| Architecture | Single `index.html` + ES modules — no React, no bundler, no npm |
+| Framework | React 18 + Vite 6 |
+| 3D Engine | [Three.js](https://threejs.org/) v0.180 |
+| Animation | `THREE.AnimationMixer` with sequential crossfade cycling |
+| Audio | [Howler.js](https://howlerjs.com/) + Web Audio API `AnalyserNode` for frequency analysis |
+| Styling | Tailwind CSS 4 + custom skeuomorphic CSS |
 
 ## Assets & Credits
 
@@ -38,35 +42,37 @@ A JetAudio-inspired skeuomorphic music player with a twist: inside the visualiza
 ## Project Structure
 
 ```
-├── index.html                  ← Entry point (importmap + module script)
-├── style.css                   ← Skeuomorphic player styles
-├── constants.js                ← Body part bitmasks, config
-├── setup-songs.js              ← Per-song animation/stage/choreography config
-├── audio-engine.js             ← Web Audio API + frequency analysis
-├── animation-engine.js         ← subclipLoop, move system, blending
+├── package.json                <- Dependencies (React, Three.js, Howler, Vite, Tailwind)
+├── vite.config.ts              <- Vite build config
+├── src/
+│   ├── app/
+│   │   ├── App.tsx             <- Root component
+│   │   └── components/
+│   │       └── SynesthesiaPlayer.tsx  <- The entire player (~1000 lines)
+│   └── styles/
+│       ├── synesthesia.css     <- Skeuomorphic player styles
+│       └── theme.css           <- Design tokens
 ├── asssets/
-│   ├── animations/             ← 13 Mixamo dance animations (.glb)
-│   ├── characters/             ← 4 Mixamo characters (.glb)
-│   └── musics/                 ← Audio tracks (.mp3)
+│   ├── animations/             <- 13 Mixamo dance animations (.glb)
+│   ├── characters/             <- 4 Mixamo characters (.glb)
+│   └── musics/                 <- Audio tracks (.mp3)
 └── docs/
-    ├── prd.md                  ← Full product requirements document
-    ├── design-guideline.md     ← Skeuomorphic design specifications
-    ├── song.md                 ← Song lyrics for music generation
-    └── sample-gui.png          ← UI reference image
+    ├── prd.md                  <- Product requirements document
+    ├── design-guideline.md     <- Skeuomorphic design specifications
+    ├── song.md                 <- Song lyrics
+    └── sample-gui.png          <- UI reference image
 ```
 
 ## How to Run
 
-**Option A — Use hosted version (no setup):**
-Open [vahiidl.github.io/synesthesia-music-player](https://vahiidl.github.io/synesthesia-music-player/) in your browser.
+**Option A: Use hosted version (no setup)**
+Open [trust-adjust-40491506.figma.site](https://trust-adjust-40491506.figma.site) in your browser.
 
-**Option B — Run locally:**
+**Option B: Run locally**
 1. Clone this repo
-2. Serve with any local HTTP server (e.g. `npx serve .` or VS Code Live Server)
-3. Open in browser — no build step required
-
-> **Asset base URL:** `https://vahiidl.github.io/synesthesia-music-player/`
-> All `.glb` and `.mp3` files are publicly accessible at this base via GitHub Pages.
+2. `npm install`
+3. `npm run dev`
+4. Open in browser
 
 ## License
 

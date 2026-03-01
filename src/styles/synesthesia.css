@@ -1,0 +1,604 @@
+/* ===== SYNESTHESIA — SKEUOMORPHIC PLAYER STYLES ===== */
+/* JetAudio-inspired brushed-metal, chrome-bezeled, hardware-feel UI */
+
+/* --- Page Background --- */
+.syn-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #050505;
+  background-image: radial-gradient(ellipse at center, #0a0a12 0%, #050505 70%);
+  overflow: hidden;
+  font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+}
+
+/* --- Player Shell (the physical device body) --- */
+.syn-player {
+  width: 680px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(255,255,255,0.018) 1px,
+      transparent 2px,
+      rgba(0,0,0,0.008) 3px,
+      transparent 4px,
+      rgba(255,255,255,0.01) 5px,
+      transparent 6px
+    ),
+    linear-gradient(180deg,
+      #d4d4d4 0%,
+      #c8c8c8 8%,
+      #d2d2d2 16%,
+      #c0c0c0 30%,
+      #d0d0d0 45%,
+      #b8b8b8 60%,
+      #c4c4c4 75%,
+      #b0b0b0 90%,
+      #a8a8a8 100%
+    );
+  box-shadow:
+    0 0 80px rgba(0, 180, 255, 0.06),
+    0 10px 40px rgba(0,0,0,0.55),
+    0 4px 16px rgba(0,0,0,0.4),
+    0 1px 4px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.6),
+    inset 0 -1px 0 rgba(0,0,0,0.15);
+  animation: syn-power-on 0.8s ease-out;
+}
+
+@keyframes syn-power-on {
+  0% { opacity: 0; transform: scale(0.97) translateY(6px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- Title Bar --- */
+.syn-titlebar {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0px, rgba(255,255,255,0.02) 1px, transparent 2px),
+    linear-gradient(180deg, #d6d6d6 0%, #c4c4c4 40%, #b4b4b4 100%);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.syn-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.syn-logo-icon {
+  font-size: 14px;
+  color: #888;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.syn-titlebar-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: transparent;
+  background: linear-gradient(180deg, #999 0%, #666 50%, #999 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  user-select: none;
+}
+
+.syn-window-controls {
+  display: flex;
+  gap: 7px;
+}
+
+.syn-window-btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.25);
+  background: linear-gradient(180deg, #d4d4d4 0%, #a8a8a8 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 2px rgba(0,0,0,0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #666;
+  line-height: 1;
+  padding: 0;
+}
+.syn-window-btn:hover { background: linear-gradient(180deg, #e4e4e4 0%, #b8b8b8 100%); }
+.syn-window-close:hover { background: linear-gradient(180deg, #e88, #c44); color: #fff; }
+
+/* --- Visualization Window --- */
+.syn-viz-container {
+  margin: 6px 14px 4px;
+  position: relative;
+}
+
+.syn-viz-bezel {
+  position: relative;
+  border-radius: 6px;
+  padding: 3px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(255,255,255,0.015) 1px,
+      transparent 2px,
+      rgba(0,0,0,0.006) 3px,
+      transparent 4px
+    ),
+    linear-gradient(180deg,
+      #c8c8c8 0%,
+      #b8b8b8 15%,
+      #c4c4c4 30%,
+      #b0b0b0 50%,
+      #bcbcbc 70%,
+      #a8a8a8 85%,
+      #b4b4b4 100%
+    );
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.3),
+    0 1px 3px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 -1px 0 rgba(0,0,0,0.12),
+    inset 1px 0 0 rgba(255,255,255,0.2),
+    inset -1px 0 0 rgba(0,0,0,0.06);
+}
+
+.syn-viz-inner {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(0,0,0,0.4);
+  box-shadow:
+    inset 0 2px 8px rgba(0,0,0,0.8),
+    inset 0 0 20px rgba(0,0,0,0.4),
+    inset 0 -1px 4px rgba(0,0,0,0.3);
+}
+
+.syn-canvas {
+  display: block;
+  width: 100%;
+  height: 480px;
+  background: #000;
+}
+
+/* CRT Scanlines overlay */
+.syn-scanlines {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0,0,0,0.02) 2px,
+      rgba(0,0,0,0.02) 4px
+    );
+  z-index: 2;
+  border-radius: 5px;
+}
+
+/* --- Character Selector Overlay (Glassmorphism) --- */
+.syn-char-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.syn-char-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: all 0.18s ease;
+  user-select: none;
+  outline: none;
+  text-align: left;
+  min-width: 90px;
+}
+
+.syn-char-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.syn-char-btn.active {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    0 0 12px rgba(100, 200, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Loading overlay */
+.syn-loading-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 30, 50, 0.88);
+  z-index: 10;
+  border-radius: 5px;
+}
+.syn-loading-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: #00ccff;
+  text-shadow: 0 0 8px #00ccff;
+  animation: syn-pulse 1.5s ease-in-out infinite;
+}
+.syn-loading-bar {
+  width: 120px; height: 3px;
+  background: rgba(0,200,255,0.15);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.syn-loading-bar-fill {
+  height: 100%;
+  background: #00ccff;
+  box-shadow: 0 0 6px #00ccff;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+@keyframes syn-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* --- Progress Bar --- */
+.syn-progress-container {
+  margin: 6px 18px 2px;
+  padding: 2px 0;
+}
+.syn-progress-track {
+  width: 100%;
+  height: 7px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.5),
+    inset 0 0 2px rgba(0,0,0,0.3),
+    0 1px 0 rgba(255,255,255,0.2);
+  position: relative;
+  cursor: pointer;
+}
+.syn-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #005599 0%, #0088cc 30%, #00bbee 70%, #00ccff 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0,204,255,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  position: relative;
+  transition: width 0.05s linear;
+}
+.syn-progress-fill.warm {
+  background: linear-gradient(90deg, #993300 0%, #cc4400 30%, #ee5500 70%, #ff6644 100%);
+  box-shadow: 0 0 8px rgba(255,102,68,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.syn-progress-thumb {
+  position: absolute;
+  right: -5px;
+  top: -3px;
+  width: 10px;
+  height: 13px;
+  background: linear-gradient(180deg, #eee 0%, #ccc 40%, #aaa 100%);
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 4px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  cursor: grab;
+}
+
+/* --- Track Info Row (between timeline and transport) --- */
+.syn-track-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 20px 2px;
+  user-select: none;
+}
+
+.syn-track-info-left {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.syn-track-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #555;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.syn-track-title.warm {
+  color: #884422;
+}
+
+.syn-track-genre {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #888;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+
+.syn-track-info-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.syn-track-energy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  color: #999;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+}
+.syn-track-energy.groove { color: #777; }
+.syn-track-energy.full { color: #555; }
+.syn-track-energy.warm.groove { color: #996644; }
+.syn-track-energy.warm.full { color: #884422; }
+
+.syn-track-beat {
+  font-size: 8px;
+  color: rgba(0,0,0,0.12);
+  transition: all 0.1s ease;
+}
+.syn-track-beat.active {
+  color: #00ccee;
+  text-shadow: 0 0 6px #00ccff;
+}
+.syn-track-beat.active-warm {
+  color: #ff6644;
+  text-shadow: 0 0 6px #ff4422;
+}
+
+.syn-track-info-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.syn-track-time {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: #555;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+}
+.syn-track-time.dim { color: #999; }
+.syn-track-time.warm { color: #884422; }
+.syn-track-time.dim.warm { color: #aa8866; }
+
+.syn-track-sep {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: #bbb;
+}
+
+/* --- Transport + Volume Controls Row --- */
+.syn-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 18px 8px;
+}
+
+.syn-transport {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.syn-transport-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.22);
+  background:
+    radial-gradient(ellipse at 40% 30%, rgba(255,255,255,0.15) 0%, transparent 60%),
+    linear-gradient(180deg, #ddd 0%, #c4c4c4 30%, #b0b0b0 70%, #a0a0a0 100%);
+  box-shadow:
+    0 3px 6px rgba(0,0,0,0.3),
+    0 1px 3px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.55),
+    inset 0 -1px 0 rgba(0,0,0,0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  transition: all 0.1s ease;
+  padding: 0;
+  outline: none;
+  user-select: none;
+}
+.syn-transport-btn:active {
+  background:
+    radial-gradient(ellipse at 50% 60%, rgba(0,0,0,0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #a0a0a0 0%, #b4b4b4 40%, #c8c8c8 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(0,0,0,0.35),
+    inset 0 1px 2px rgba(0,0,0,0.2);
+  transform: translateY(1px);
+}
+.syn-transport-btn:hover {
+  background:
+    radial-gradient(ellipse at 40% 30%, rgba(255,255,255,0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 30%, #bbb 70%, #aaa 100%);
+}
+
+.syn-transport-btn.play-btn {
+  width: 50px;
+  height: 50px;
+  background:
+    radial-gradient(ellipse at 38% 28%, rgba(255,255,255,0.2) 0%, transparent 55%),
+    linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 25%, #bbb 65%, #a8a8a8 100%);
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.35),
+    0 2px 4px rgba(0,0,0,0.2),
+    inset 0 2px 0 rgba(255,255,255,0.6),
+    inset 0 -1px 0 rgba(0,0,0,0.12);
+}
+.syn-transport-btn.play-btn:active {
+  box-shadow:
+    inset 0 3px 6px rgba(0,0,0,0.4),
+    inset 0 1px 3px rgba(0,0,0,0.25);
+}
+
+.syn-transport-btn svg { fill: #555; stroke: none; }
+
+/* --- Volume Area --- */
+.syn-volume-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.syn-volume-slider-wrap {
+  width: 80px;
+  position: relative;
+}
+
+.syn-volume-track {
+  width: 100%;
+  height: 5px;
+  background: rgba(0,0,0,0.28);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.15);
+  position: relative;
+  cursor: pointer;
+}
+
+.syn-volume-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0088cc, #00ccff);
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0,204,255,0.35);
+}
+.syn-volume-fill.warm {
+  background: linear-gradient(90deg, #cc4400, #ff6644);
+  box-shadow: 0 0 5px rgba(255,102,68,0.35);
+}
+
+/* Volume Knob */
+.syn-knob {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg,
+      #d8d8d8, #b0b0b0, #d4d4d4, #a8a8a8,
+      #ccc, #b4b4b4, #d8d8d8, #a4a4a4,
+      #d0d0d0, #b8b8b8, #d8d8d8
+    );
+  border: 2.5px solid rgba(0,0,0,0.18);
+  box-shadow:
+    0 3px 8px rgba(0,0,0,0.35),
+    0 1px 4px rgba(0,0,0,0.25),
+    inset 0 0 16px rgba(0,0,0,0.04),
+    inset 0 0 2px rgba(0,0,0,0.08);
+  cursor: grab;
+  position: relative;
+  user-select: none;
+}
+.syn-knob:active { cursor: grabbing; }
+
+.syn-knob-marker {
+  position: absolute;
+  width: 3px;
+  height: 13px;
+  background: linear-gradient(180deg, #666, #444);
+  border-radius: 1.5px;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 1px 1px rgba(0,0,0,0.2);
+}
+
+.syn-knob-highlight {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(255,255,255,0.45), transparent 70%);
+  top: 8px;
+  left: 12px;
+  pointer-events: none;
+}
+
+/* --- Bottom Trim --- */
+.syn-bottom-trim {
+  height: 10px;
+  background: linear-gradient(180deg, #b0b0b0 0%, #a0a0a0 50%, #aaa 100%);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.syn-emblem-line {
+  width: 24px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.15), transparent);
+}
+
+.syn-emblem-v {
+  font-size: 6px;
+  color: rgba(0,0,0,0.2);
+  line-height: 1;
+}
+
+/* --- Divider --- */
+.syn-divider {
+  height: 1px;
+  margin: 0 14px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.12), transparent);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.18);
+}

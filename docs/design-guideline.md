@@ -1,111 +1,139 @@
-This skill guides creation of a retro-modern skeuomorphic music player interface inspired by the attached `sample-gui.png` reference image (generated using Nano Banana Pro 2). The design must faithfully recreate the look and feel of a classic JetAudio-style media player — brushed metal surfaces, beveled buttons, realistic knobs, and a glowing visualization window — with a 3D dancing character in the center and real-time equalizer bars behind him.
+# Design Guideline: Synesthesia Player
 
-## Design Direction: "Retro Hardware Revival"
+## Design Philosophy
 
-The aesthetic is a faithful, award-winning recreation of a classic desktop music player skin. Reference `sample-gui.png` for exact proportions and surface treatment.
+The player is a **skeuomorphic hardware device**. Every surface, shadow, and gradient must sell the illusion of a physical brushed-metal music player sitting on a dark table. Think JetAudio from the 2000s, but with a modern 3D concert stage where the equalizer used to be.
 
-- **Tone**: Skeuomorphic, hardware-inspired, premium, tactile. Brushed aluminum, chrome bezels, machined knobs, embossed buttons.
-- **Differentiation**: A 3D character dances in the visualization window in front of glowing equalizer bars. This is the iconic twist.
-- **Purpose**: Re-imagine the classic media player interaction with a living, breathing 3D element at its core.
+***
 
-**CRITICAL**: Execute the skeuomorphic vision with obsessive precision. Use `sample-gui.png` as the ground truth for proportions, surfaces, and layout.
+## Overall Layout
 
-## Frontend Aesthetics Guidelines
+- Player width: **680px**, centered on a dark page.
+- Dark page background: `#050505` with a subtle radial gradient to `#0a0a12`.
+- Player body: rounded corners (10px), multi-layered brushed metal gradients.
+- Power-on animation: fade in + slight scale-up over 0.8s.
 
-### Surfaces & Materials
-- **Brushed Metal Body**: CSS gradients simulating brushed aluminum. Use `linear-gradient` with subtle color stops (`#c0c0c0` → `#d0d0d0` → `#b4b4b4`) creating directional grain. Add a fine noise/grain overlay via a repeating CSS gradient or SVG pattern for realism. As visible in the reference image, the metal has a slight warm silver tone with horizontal brush direction.
-- **Chrome Bezels**: The visualization window frame uses bright reflective gradients (`#e0e0e0` → `#ffffff` → `#999999`) simulating polished chrome trim. The bezel has visible rounded inner corners and a 3D beveled edge — lighter on top/left edges, darker on bottom/right.
-- **Recessed Panels**: The visualization window and display panel sit in recessed bezels created with `inset box-shadow` (`inset 0 2px 6px rgba(0,0,0,0.5)`) and darker inner edge gradients.
-- **Raised Elements**: Buttons and knobs use convex gradients (lighter at top, darker at bottom) with prominent outer `box-shadow` to feel raised and liftable.
+***
 
-### The Visualization Window (3D Canvas — Hero Element)
+## Surface Treatment: Brushed Metal
 
-This is the dominant visual element. Based on the reference image:
+The metal texture is achieved through **two blended CSS gradients**:
 
-- **Size**: Takes up approximately 60–65% of the player's total height. Wide landscape rectangle.
-- **Frame**: Heavy chrome bezel with 3D edge (light highlight on top/left, dark shadow on bottom/right). Rounded inner corners (~6px radius).
-- **Background**: Dark navy-blue/teal tone (`#0a1628` to `#122040`). NOT pure black — has a cool blue atmosphere.
-- **Equalizer Bars**: Tall, narrow, rectangular bars filling the FULL HEIGHT of the window from bottom to top. Arranged as a dense grid across the entire width (~32–48 bars). Color is glowing cyan/teal (`#00ccee` to `#33eeff`). The bars have varying heights driven by audio frequency data, creating the classic equalizer look. They are slightly transparent (~70% opacity) so the background shows through. The bars should feel like a glowing grid pattern — some taller, some shorter, creating an organic wave pattern.
-- **3D Character**: Positioned in the CENTER of the window, rendered IN FRONT of the equalizer bars (higher Z-index). The character is fully opaque and lit, clearly visible against the semi-transparent glowing bars behind.
-- **Depth effect**: The equalizer bars create a "stage backdrop" behind the character, giving the scene depth and atmosphere. Combined they look like a performer on a glowing stage.
-- **Floor**: The character stands on a slightly visible reflective dark floor surface, with subtle shadow beneath.
-- **Frequency labels**: Along the bottom edge of the visualization window, small text labels showing frequency values (90, 200, 023, 108, 178, 78, 126, 13K, etc.) in dim cyan — mimicking a spectrum analyzer readout.
+1. **Horizontal grain:** `repeating-linear-gradient(90deg, ...)` with alternating tiny stripes of `rgba(255,255,255,0.018)` and `rgba(0,0,0,0.008)` at 1-6px intervals.
+2. **Vertical shading:** `linear-gradient(180deg, ...)` from `#d4d4d4` down to `#a8a8a8` with multiple color stops creating realistic curvature.
 
-### LCD Display Panel (Below Visualization Window)
+Apply this pattern to: player body, title bar, bezel, and buttons.
 
-Based on the reference image, this is a dark display strip integrated into the metal body:
+### Shadows & Depth
 
-- **Background**: Near-black with slight blue tint (`#080c14`).
-- **Layout**: Full width, approximately 50–60px tall. Contains two rows:
-  - **Top row**: Song/status text — "SYNESTHESIA 2026 – NOW DANCING" on the left, "BEAT DETECTED" on the right. The text is in a glowing cyan/teal monospace font.
-  - **Bottom row**: Timestamps in format `--:--:--` on both left and right sides.
-- **Text style**: Monospace font with glowing effect — `text-shadow: 0 0 6px #00ccff, 0 0 12px #00ccff`. Color: `#00ddff`.
-- **"BEAT DETECTED" indicator**: Pulses/flashes brighter on each detected kick drum hit.
+- **Player body:** ambient cyan glow (`0 0 80px rgba(0,180,255,0.06)`), heavy drop shadows, top highlight (`inset 0 1px 0 rgba(255,255,255,0.6)`), bottom darken.
+- **Recessed areas (viz window, progress bar):** `inset 0 2px 8px rgba(0,0,0,0.8)` for deep recess.
+- **Raised elements (buttons, bezel):** `0 3px 6px rgba(0,0,0,0.3)` + top highlight `inset 0 1px 0 rgba(255,255,255,0.55)`.
 
-### Progress Bar
+***
 
-- Sits below the LCD display panel, on the metal body surface.
-- Recessed groove appearance: `inset box-shadow` creating a channel in the metal.
-- Fill color: glowing accent blue/cyan gradient.
-- Thumb: small square or rectangular metallic drag handle (matching the reference image's shape — it's a small square block, not a circle).
-- Overall proportions: thin (4–6px height), full width of player body minus padding.
+## Typography
 
-### Transport Buttons
+| Element | Font | Size | Style |
+|---|---|---|---|
+| Title bar text | Oswald | 13px | Gradient-clipped metallic text, 1.5px letter-spacing |
+| Song title | Oswald | 13px | Color shifts between `#555` (cool) and `#884422` (warm) |
+| Genre label | Barlow Condensed | 10px | Uppercase, 0.8px letter-spacing, color `#888` |
+| Time display | Share Tech Mono | 12px | Monospace, with text shadow |
+| Animation label | Share Tech Mono | 9px | Uppercase, 1.2px letter-spacing |
+| Loading text | Share Tech Mono | 14px | Cyan glow, pulsing animation |
 
-Based on the reference image — 6 round metallic buttons in a row:
+***
 
-- **Buttons (left to right)**: |◀ (Previous), ◀◀ (Rewind), ■ (Stop), ▶|| (Play/Pause), ▶▶ (Forward), ▶| (Next)
-- **Shape**: Circular, ~40–44px diameter.
-- **Surface**: Metallic convex gradient — brighter silver at top, darker gray at bottom. Subtle beveled border ring.
-- **Icons**: Dark gray/charcoal inset icons (triangles, squares, double triangles). Icons appear engraved into the button face.
-- **Pressed state**: Gradient inverts (dark top, light bottom), shadow becomes `inset` — simulates physical depression in ~100ms.
-- **Spacing**: Evenly spaced in a horizontal row, left-aligned with some gap before the volume controls.
+## Visualization Window
 
-### Volume Controls
+- **Bezel:** 3px padding, layered metallic gradient matching the body, with 6 box-shadow layers for a thick chrome frame effect.
+- **Inner area:** border-radius 4px, black background, deep inset shadows.
+- **Canvas:** 480px height, fills full width.
+- **CRT scanlines:** pseudo-element overlay with `repeating-linear-gradient(0deg, transparent 0-2px, rgba(0,0,0,0.02) 2-4px)`.
 
-Based on the reference image — positioned to the RIGHT of the transport buttons:
+### Character Selector (Glassmorphic Overlay)
 
-- **Volume Slider**: A vertical slider (~60px tall) with a small metallic thumb. Recessed groove track. The filled portion glows with accent color. A small "+" label above and "–" below (or a speaker icon).
-- **Volume Knob**: Large circular knob (~70–80px diameter) with realistic metallic radial gradient, a center highlight spot, and a small indicator notch/line. Uses `conic-gradient` or radial gradient for the brushed metal look. Rotates on drag.
+Positioned top-left inside the visualization window. Vertical stack of 4 buttons:
 
-### Bottom Edge
+- Background: `rgba(255,255,255,0.08)` with `backdrop-filter: blur(16px)`.
+- Border: `1px solid rgba(255,255,255,0.18)`.
+- Text: 12px uppercase, `rgba(255,255,255,0.65)`.
+- Active state: brighter background (0.18 alpha), white text, subtle cyan glow shadow.
+- 0.18s ease transition on all properties.
 
-The reference image shows a subtle decorative bottom trim:
-- A small metallic logo/emblem area at the bottom center of the player.
-- Slight recessed line separating the control area from the bottom edge.
+***
 
-### Typography
-- **LCD/Display text**: "Share Tech Mono", "VT323", or "Courier New". Glowing cyan/teal color with text-shadow glow.
-- **Labels**: "Barlow Condensed" or "Oswald" — dark embossed style on the metal surface.
-- **Frequency labels**: Very small (8–9px), monospace, dim cyan.
-- **NEVER** use Inter, Roboto, Arial, or generic system fonts.
+## Progress Bar
 
-### Color Palette
-- **Metal body**: Warm silver grays (`#b8b8b8` to `#d4d4d4`)
-- **Display background**: `#080c14`
-- **Accent / Glow**: Electric cyan/teal (`#00ccff` to `#00eeff`) — used for equalizer bars, LCD text, progress fill, beat indicator, active button highlights
-- **Button face**: Chrome silver gradients
-- **Visualization background**: Dark navy-blue (`#0a1628`)
-- **Shadows**: Multiple layers — outer shadows for raised elements, inset shadows for recessed panels
+- Track: 7px height, recessed groove style with inset shadows + bottom highlight.
+- Fill: gradient from dark to bright in the accent color.
+  - **Cool:** `#005599` to `#00ccff`
+  - **Warm:** `#993300` to `#ff6644`
+- Thumb: metallic rectangle, 10x13px, rounded 3px, linear gradient from `#eee` to `#aaa`.
 
-### Motion & Animation
-- **Button presses**: Fast, snappy (100–150ms) — gradient inversion + shadow inset. NO bouncy spring animations.
-- **Volume knob**: Smooth rotation following drag, no jitter.
-- **Progress bar**: Smooth fill with glowing leading edge.
-- **Equalizer bars**: Smooth vertical scaling from audio data. Fast rise, gradual decay (previous × 0.92 falloff).
-- **Beat indicator**: "BEAT DETECTED" text flashes bright on kick drum hits, fades over 200ms.
-- **Song title marquee**: Scrolls horizontally if text overflows, classic style.
-- **Page load**: Player fades in as a single unit — like powering on a device. No staggered element reveals.
+***
 
-### Layout & Proportions
+## Transport Buttons
 
-Based on the reference image, the player is nearly SQUARE — approximately 1:1 aspect ratio or slightly wider:
+- Standard size: **42px** circle, play button: **50px** circle.
+- Convex gradient: `#ddd` at top, `#a0a0a0` at bottom, with a radial specular highlight at upper-left.
+- Active (pressed): gradient inverts (dark at top, light at bottom), shadow changes to `inset 0 2px 5px rgba(0,0,0,0.35)`, 1px downward translate.
+- Hover: slightly brighter gradient.
+- Icon color: `#555`.
+- Border: `1px solid rgba(0,0,0,0.22)`.
 
-- **Total size**: ~550×520px or ~600×560px
-- **Visualization window**: ~85% of player width, ~55% of player height
-- **LCD display**: Full width, ~50px tall
-- **Controls area**: ~120px tall, containing progress bar + transport buttons + volume
-- **Centered on page**: Dark background (`#0a0a0a`) with subtle ambient glow from the player
-- **The player does NOT fill the browser** — it sits centered like a physical device on a dark surface
+***
 
-**IMPORTANT**: Skeuomorphic design requires extensive CSS — many layers of gradients, shadows, borders, and pseudo-elements. Do not simplify. Reference `sample-gui.png` for every detail. The detail IS the design.
+## Volume Controls
+
+### Slider
+- Track: 80px wide, 5px height, recessed groove.
+- Fill: accent color gradient (cyan or orange depending on song).
+
+### Knob
+- Size: **56px** circle.
+- Surface: `conic-gradient` creating a realistic metal knob with alternating light/dark bands.
+- Border: 2.5px `rgba(0,0,0,0.18)`.
+- Marker: 3x13px dark line at top.
+- Specular highlight: radial gradient at upper-left.
+- Rotation range: -135 to +135 degrees.
+- Interaction: mouse drag to rotate.
+
+***
+
+## The 3D Stage
+
+### LED Dot Wall
+- 20 rows x 40 columns of small spheres behind the character.
+- Colors: blue, purple, magenta palette with additive blending.
+- Audio-reactive: columns map to frequency bins, dots light up when frequency exceeds row threshold.
+- Paused state: faint greyscale breathing glow.
+
+### Disco Floor
+- 10x10 grid of metallic tiles at ground level.
+- Purple/blue palette, high metalness (0.9), low roughness (0.15).
+- Audio-reactive: ripple effect from center, brightness driven by frequency data.
+- Paused state: greyscale, minimal emissive.
+
+### Stage Lighting
+- 3 overhead spots (always on): white, cool blue, warm orange.
+- 1 front key light (always on): character illumination.
+- 5 colored stage beams (play only): pink, gold, cyan, blue, magenta with bass-driven intensity and slow sweep.
+- 1 main front spot (play only): intensity pulses with bass.
+
+***
+
+## Color Theming
+
+Two song-based color themes applied via `.warm` CSS class:
+
+| Element | Cool (default) | Warm |
+|---|---|---|
+| Accent color | `#00ccff` | `#ff6644` |
+| Progress fill | Cyan gradient | Orange gradient |
+| Volume fill | Cyan gradient | Orange gradient |
+| Beat indicator | Cyan glow | Orange glow |
+| Song title | `#555` | `#884422` |
+| Time text | `#555` | `#884422` |
+| Animation label | `#999` | `#996644` |

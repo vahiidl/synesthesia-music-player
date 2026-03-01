@@ -1,0 +1,17 @@
+# Source FBX files (originals from Mixamo - only .glb conversions are needed)
+*.fbx
+*.fbm/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node modules (for any local dev tools)
+node_modules/

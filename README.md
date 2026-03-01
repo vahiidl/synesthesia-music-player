@@ -6,7 +6,9 @@ A reimagined classic media player where the traditional equalizer visualization 
 
 ## Demo
 
-https://github.com/vahiidl/synesthesia-music-player/raw/main/docs/demo.mp4
+https://github.com/user-attachments/assets/77cb352c-8466-4a77-b633-891d7cfeaf3a
+
+[**Watch the demo video**](https://vahiidl.github.io/synesthesia-music-player/docs/demo.mp4) &nbsp;|&nbsp; [**Try it live**](https://trust-adjust-40491506.figma.site)
 
 ## What Is This?
 
